@@ -22,14 +22,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $photo = $_FILES['photo'];
         $photo_name = basename($photo['name']);
         $photo_tmp_name = $photo['tmp_name'];
-        $photo_target_dir = '../../../uploads/images_upload/';
+        $photo_target_dir = 'uploads/images_upload/';
+        $photo_target_dir = 'uploads/images_upload/';
+        if (!is_dir($photo_target_dir)) {
+            mkdir($photo_target_dir, 0777, true);  // Crée le dossier s'il n'existe pas
+        }
         $photo_target_file = $photo_target_dir . $photo_name;
 
         // Vérifier si l'image est valide
         if (move_uploaded_file($photo_tmp_name, $photo_target_file)) {
             $update = "UPDATE info SET nom = ?, prenom = ?, statut = ?, intro = ?, photo = ? WHERE id = ?";
             if ($stmt = mysqli_prepare($connexion_bdd, $update)) {
-                mysqli_stmt_bind_param($stmt, "sssssi", $nom, $prenom, $statut, $intro, $photo_name, $id);
+                mysqli_stmt_bind_param($stmt, "sssssi", $nom, $prenom, $statut, $intro, $photo_target_file, $id);
                 if (mysqli_stmt_execute($stmt)) {
                     header("Location: ../../index.php");
                     exit;
@@ -102,7 +106,7 @@ mysqli_close($connexion_bdd);
         <input type="file" id="photo" name="photo" class="w-full border p-2 mb-4 rounded">
         <?php if ($info['photo']): ?>
             <p class="text-sm text-gray-500">Photo actuelle :</p>
-            <img src="../../../uploads/images_upload/<?= htmlspecialchars($info['photo']) ?>" alt="photo" class="w-20 h-auto rounded shadow mb-4">
+            <img src="../../../<?= htmlspecialchars($info['photo']) ?>" alt="photo" class="w-20 h-auto rounded shadow mb-4">
         <?php endif; ?>
 
         <div class="flex justify-between">
