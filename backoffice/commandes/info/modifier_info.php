@@ -102,7 +102,7 @@ mysqli_close($connexion_bdd);
         <input type="file" id="photo" name="photo" class="w-full border p-2 mb-4 rounded">
         <?php if ($info['photo']): ?>
             <p class="text-sm text-gray-500">Photo actuelle :</p>
-            <img src="../../uploads/images_upload/<?= htmlspecialchars($info['photo']) ?>" alt="photo" class="w-20 h-auto rounded shadow mb-4">
+            <img src="../../../uploads/images_upload/<?= htmlspecialchars($info['photo']) ?>" alt="photo" class="w-20 h-auto rounded shadow mb-4">
         <?php endif; ?>
 
         <div class="flex justify-between">
