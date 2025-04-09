@@ -66,7 +66,7 @@ function transformerLienYoutube($lien) {
         <section id="banner">
             <?php if (!empty($information[0]['photo'])): ?>
                 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-                    <img src="uploads/images_upload/<?= htmlspecialchars($information[0]['photo']); ?>" alt="Photo de profil"
+                    <img src="<?= htmlspecialchars($information[0]['photo']); ?>" alt="Photo de profil"
                          style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
                 </div>
             <?php endif; ?>
@@ -102,13 +102,13 @@ function transformerLienYoutube($lien) {
             </section>
 
             <!-- Projets -->
-            <div id="projets" class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div id="projets" class="column">
                 <h2 class="text-3xl font-bold text-center mb-6 w-full">Mes projets<br></h2>
                 <?php foreach ($projets as $projet): ?>
                     <?php if ($projet['idCategorie'] != $videoCategoryId): ?>
-                        <div class="col-6" style="width: 50%; display: flex;">
-                            <section class="box special" style="width: 100%; display: flex; flex-direction: column; align-items: left;">
-                                <span class="image featured" style="width: 100%; height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                        <div class="col-6">
+                            <section class="box special" >
+                                <span class="image featured" style="width: auto; height: 300px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
                                 <img src="<?= htmlspecialchars($projet['img']); ?>" alt="Image du projet" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                 </span>
                                 <div style="padding: 20px; text-align: center;">
@@ -121,28 +121,29 @@ function transformerLienYoutube($lien) {
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
-
             <!-- Projets vidéos -->
-            <div id="projets-videos" class="row" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 50px;">
+            <div id="projets-videos" class="column">
                 <h2 class="text-3xl font-bold text-center mb-6 w-full">Mes projets vidéos<br></h2>
                 <?php if ($projetsVideo): ?>
-                    <?php foreach ($projetsVideo as $projet): ?>
-                        <div class="col-6" style="width: 100%; display: flex; justify-content: left;">
-                            <section class="box special" style="width: 80%; max-width: 500px; display: flex; flex-direction: column; align-items: center; padding: 20px; border: 2px solid #ccc; border-radius: 10px;">
-                                <div style="padding: 20px; text-align: center;">
+                        <div class="col-6" >
+                        <?php foreach ($projetsVideo as $projet): ?>
+                            <section class="box special" >
+                                <div>
                                     <h3><?= htmlspecialchars($projet['titre']); ?></h3>
                                     <?php 
                                         // Vérifie si un lien vidéo est présent
                                         if (!empty($projet['lien'])) {
                                             $lienEmbed = transformerLienYoutube($projet['lien']); // Applique la fonction de transformation du lien
                                             // L'iframe YouTube avec plus d'espace
-                                            echo "<iframe width='100%' height='300' src='" . htmlspecialchars($lienEmbed) . "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+                                            echo "<iframe width='100%' height='500' src='" . htmlspecialchars($lienEmbed) . "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
                                         }
                                     ?>
+                                    <p><?= htmlspecialchars($projet['texte']); ?></p>
+                                    <p><strong>Catégorie :</strong> <?= htmlspecialchars($projet['categorie_nom']); ?></p>
                                 </div>
                             </section>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
                 <?php else: ?>
                     <p>Aucun projet vidéo trouvé.</p>
                 <?php endif; ?>

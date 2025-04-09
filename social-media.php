@@ -1,6 +1,6 @@
 <?php
 $requete = "SELECT * FROM social_media;";
-$reseaux_sociaux = mysqli_query($connect, $requete);
+$reseaux_sociaux = mysqli_query($connexion_bdd, $requete);
 // Vérification et affichage des résultats
 
 if ($reseaux_sociaux && mysqli_num_rows($reseaux_sociaux) > 0) {
@@ -17,5 +17,5 @@ if ($reseaux_sociaux && mysqli_num_rows($reseaux_sociaux) > 0) {
 }
 
 // Fermer la connexion après usage
-mysqli_close($connect);
+mysqli_close($connexion_bdd);
 ?>
