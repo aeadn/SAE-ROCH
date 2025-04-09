@@ -87,14 +87,6 @@ if (isset($_GET['search'])) {
 <div class="container mx-auto px-6 py-8">
     <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Backoffice</h1>
 
-    <!-- Barre de recherche globale -->
-    <div class="mb-6">
-        <form action="" method="GET" class="flex justify-center">
-            <input type="text" name="search" class="px-4 py-2 border rounded" placeholder="Rechercher..." value="<?= isset($searchTerm) ? htmlspecialchars($searchTerm) : '' ?>">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Rechercher</button>
-        </form>
-    </div>
-
     <!-- Section Infos -->
     <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">Informations</h2>
@@ -142,8 +134,6 @@ if (isset($_GET['search'])) {
         <input type="text" name="search_projets" placeholder="Rechercher..." class="px-4 py-2 border border-gray-300 rounded-md w-1/4">
         <button type="submit" name="search_button_projets" class="bg-blue-500 text-white font-bold py-2 px-4 rounded ml-2">Rechercher</button>
     </form>
-    <img src="uploads/images/image.png" style="width:100px">
-
 
     <?php
         $searchTerm = isset($_POST['search_projets']) ? $_POST['search_projets'] : '';
