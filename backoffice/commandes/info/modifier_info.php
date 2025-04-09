@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $photo = $_FILES['photo'];
         $photo_name = basename($photo['name']);
         $photo_tmp_name = $photo['tmp_name'];
-        $photo_target_dir = '../../uploads/images_upload/';
+        $photo_target_dir = '../../../uploads/images_upload/';
         $photo_target_file = $photo_target_dir . $photo_name;
 
         // Vérifier si l'image est valide
