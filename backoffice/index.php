@@ -66,7 +66,7 @@ require_once('commandes/recuperer_donnees.php');
 
 // Récupérer les données pour chaque section
 $social_media = recupererDonnees($connexion_bdd, "SELECT id, nom, icone, lien FROM `social_media`;"); 
-$projets = recupererDonnees($connexion_bdd, "SELECT id, titre, texte, idCategorie, img FROM `projets`;"); 
+$projets = recupererDonnees($connexion_bdd, "SELECT projets.id, projets.titre, projets.texte, categories.nom AS nomCategorie, projets.img, projets.lien FROM projets LEFT JOIN categories ON projets.idCategorie = categories.id");
 $competences = recupererDonnees($connexion_bdd, "SELECT id, nom, texte FROM `competences`;"); 
 $info = recupererDonnees($connexion_bdd, "SELECT id, nom, prenom, intro, photo FROM `info`;"); 
 $categories = recupererDonnees($connexion_bdd, "SELECT id, nom, `description` FROM categories");
@@ -140,7 +140,7 @@ if (isset($_GET['search'])) {
         $filteredProjets = rechercher($connexion_bdd, 'projets', ['titre', 'texte'], $searchTerm);
         afficherTableau(
             $filteredProjets,
-            ['titre', 'texte', 'idCategorie', 'img', 'lien'],
+            ['titre', 'texte', 'nomCategorie', 'img', 'lien'],
             ['Titre', 'Texte', 'Catégorie', 'Image', 'Lien'],
             'commandes/projets/modifier_projet.php?id=',
             'commandes/projets/supprimer_projet.php?id='
@@ -196,6 +196,7 @@ if (isset($_GET['search'])) {
             'commandes/categories/supprimer_categorie.php?id='
         );
     ?>
+    </div>
 
     <!-- Section Parcours -->
     <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
