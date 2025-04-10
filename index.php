@@ -66,12 +66,9 @@ function transformerLienYoutube($lien) {
         <section id="banner">
             <?php if (!empty($information[0]['photo'])): ?>
                 <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-<<<<<<< HEAD
                     <img src="<?= htmlspecialchars($information[0]['photo']); ?>" alt="Photo de profil" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-=======
                     <img src="uploads/images_upload/<?= htmlspecialchars($information[0]['photo']); ?>" alt="Photo de profil"
                          style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
->>>>>>> parent of 880d3b4 (COMMIT FINZL)
                 </div>
             <?php endif; ?>
             <h2><?= htmlspecialchars($information[0]['prenom']) . ' ' . htmlspecialchars($information[0]['nom']); ?></h2>
