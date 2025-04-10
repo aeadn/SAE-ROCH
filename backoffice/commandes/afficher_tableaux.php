@@ -24,7 +24,7 @@ function afficherTableau($data, $columns, $titles, $editLink, $deleteLink = null
                 $src = $row[$column];
 
                 echo "<img src='../{$src}' alt='image' class='w-20 h-auto rounded shadow mb-1' />";
-                echo "<br><small class='text-gray-500 text-xs'>{$src}</small>";
+                echo "<br><small class='text-gray-500 text-xs'>../{$src}</small>";
             } else {
                 echo isset($row[$column]) ? htmlspecialchars($row[$column]) : '-';
             }
